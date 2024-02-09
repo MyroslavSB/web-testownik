@@ -1,0 +1,14 @@
+@import "vars";
+@import "fonts";
+
+@mixin font-base(
+  $size: 14,
+  $font-weight: 400,
+  $height: 18,
+  $font-style: normal,
+  $font-family: $roboto
+) {
+  font: $font-weight $font-style #{$size}/#{$height $font-family};
+}
+
+

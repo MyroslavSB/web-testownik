@@ -1,1 +1,69 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/mixins";
+@import "./assets/styles/fonts";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none;
+    cursor: inherit;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+
+  &:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background: initial;
+}
+
+input, label {
+  cursor: pointer;
+}
+
+.container {
+  height: 100%;
+  width: 89%;
+  max-width: 2160px;
+  margin: 0 auto;
+
+  &-100 {
+    height: 100%;
+    width: 100%;
+    max-width: 2160px;
+    margin: 0 auto;
+
+    &.no-max-width {
+      max-width: none !important;
+    }
+  }
+}
+
+.headline-1 {
+  @include font-base(32px, 400, 38.4px, normal, $roboto);
+}
