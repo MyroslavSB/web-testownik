@@ -1,4 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {ChangeDetectionStrategy, Component, DestroyRef, inject} from '@angular/core';
+import {QuestionsProcessingService} from "../../../services/questions-processing.service";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {QuestionsService} from "../../../services/questions.service";
 
 @Component({
   selector: 'app-file-drop-down',
@@ -10,9 +13,22 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 })
 export class FileDropDownComponent {
 
+  private destroyRef = inject(DestroyRef)
+
+  constructor(
+    private questionProcessingService: QuestionsProcessingService,
+    private questionsService: QuestionsService
+  ) {
+  }
+
   public onFileDrop($event: any | Event): void {
 
-    console.log($event.target.files)
+    this.questionProcessingService.processFiles(Array.from($event.target.files))
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(questions => {
+        console.log(questions)
+        this.questionsService.setQuestions(questions)
+      })
   }
 
 }
