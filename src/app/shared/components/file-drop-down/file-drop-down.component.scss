@@ -1,0 +1,39 @@
+@import "../../../../assets/styles/vars";
+@import "../../../../assets/styles/fonts";
+@import "../../../../assets/styles/mixins";
+
+.drop {
+  width: 100%;
+  height: 100%;
+  border: 4px dashed #ccc;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &.drag-over {
+    border-color: #007bff;
+
+  }
+
+  &__text {
+    color: $text-secondary;
+    cursor: pointer;
+  }
+
+  &__click {
+    color: $accent-primary-dark;
+  }
+
+  &__input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+

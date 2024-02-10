@@ -1,0 +1,15 @@
+<div class="drop"
+     (drop)="onFileDrop($event)"
+>
+  <span class="drop__text">
+    Drop your files or <span class="drop__click"> click here </span>
+  </span>
+  <input class="drop__input"
+         #inputRef
+         type="file"
+         (change)="onFileDrop($event)"
+         multiple
+         webkitdirectory
+         directory
+  >
+</div>

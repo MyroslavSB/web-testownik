@@ -3,5 +3,16 @@
     width: max-content;
     margin: 100px auto;
     text-align: center;
+
+    &-drop {
+      width: 550px;
+      height: 350px;
+      margin: 0 auto;
+    }
+  }
+
+  &__title {
+    margin-bottom: 32px;
+
   }
 }
