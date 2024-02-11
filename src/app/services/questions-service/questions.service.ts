@@ -40,4 +40,7 @@ export class QuestionsService {
     this.setQuestions(questions)
   }
 
+  public canActivate(): boolean {
+    return this.questions.getValue().length > 0
+  }
 }
