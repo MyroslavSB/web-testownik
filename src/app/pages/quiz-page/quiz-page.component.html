@@ -1,1 +1,14 @@
-<p>quiz-page works!</p>
+<div class="quiz-page">
+  <div class="quiz-page__main">
+
+    <div class="quiz-page__main-questions">
+      <h4 class="quiz-page__main-active">
+        {{(activeQuestion$ | async).question}}
+      </h4>
+    </div>
+
+    <div class="quiz-page__main-info">
+
+    </div>
+  </div>
+</div>
