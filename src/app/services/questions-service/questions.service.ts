@@ -27,7 +27,10 @@ export class QuestionsService {
   }
 
   public changeActiveQuestion(): void {
-    // const random_index =
+    const length = this.questions.getValue().length
+    const random_index = Math.floor(Math.random() * length)
+
+    this.activeQuestion.next(this.questions.getValue()[random_index])
   }
 
   public questionAnswered(): void {
@@ -39,6 +42,11 @@ export class QuestionsService {
 
     this.setQuestions(questions)
   }
+
+  public get correctAnswersCount(): number {
+    return this.questions.getValue().filter(question => question.remaining_attempts === 0).length
+  }
+
 
   public canActivate(): boolean {
     return this.questions.getValue().length > 0

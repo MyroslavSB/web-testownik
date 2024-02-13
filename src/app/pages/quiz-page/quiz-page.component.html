@@ -9,6 +9,10 @@
 
     <div class="quiz-page__main-info">
 
+
+      <p class="" *ngFor="let option of (activeQuestion$ | async).options">
+        {{option.text}}
+      </p>
     </div>
   </div>
 </div>
