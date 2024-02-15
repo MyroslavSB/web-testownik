@@ -1,18 +1,21 @@
 <div class="quiz-page">
   <div class="quiz-page__main">
 
-    <div class="quiz-page__main-questions">
-      <h4 class="quiz-page__main-active">
+    <div class="quiz-page__main-content">
+      <h4 class="quiz-page__main-content-title headline-1">
         {{(activeQuestion$ | async).question}}
       </h4>
+
+      <div class="quiz-page__main-content-questions">
+
+        @for(option of (activeQuestion$ | async).options; track trackOptions) {
+          <app-option-card
+            [option]="option"
+          ></app-option-card>
+        }
+
+      </div>
     </div>
 
-    <div class="quiz-page__main-info">
-
-
-      <p class="" *ngFor="let option of (activeQuestion$ | async).options">
-        {{option.text}}
-      </p>
-    </div>
   </div>
 </div>

@@ -1,8 +1,19 @@
+@import "../../../assets/styles/vars";
+
 .quiz-page {
   &__main {
-    &-questions {
+    &-content {
+      &-title {
+        color: $text-fourth;
+        margin-bottom: 64px;
+      }
 
+      &-questions {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 3%;
+        grid-row-gap: 32px;
+      }
     }
-
   }
 }
