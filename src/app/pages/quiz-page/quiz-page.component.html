@@ -3,16 +3,19 @@
 
     <div class="quiz-page__main-content">
       <h4 class="quiz-page__main-content-title headline-1">
-        {{(activeQuestion$ | async).question}}
+        {{ (activeQuestion$ | async).question }}
       </h4>
 
       <div class="quiz-page__main-content-questions">
 
-        @for(option of (activeQuestion$ | async).options; track trackOptions) {
-          <app-option-card
-            [option]="option"
-          ></app-option-card>
-        }
+        <app-option-card
+          *ngFor="let option of (activeQuestion$ | async).options; trackBy trackOptions"
+          [option]="option"
+          [optionCardPicked]="option.id | optionPicked: pickedOptions"
+          (optionCardPick)="pickOption($event)"
+
+        ></app-option-card>
+
 
       </div>
     </div>

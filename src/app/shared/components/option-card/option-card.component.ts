@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {IQuestionOption} from "../../interfaces/i-question-option";
 import { EventEmitter } from '@angular/core';
 
@@ -11,12 +11,12 @@ import { EventEmitter } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OptionCardComponent {
-  @Output() optionCardPick: EventEmitter<void> = new EventEmitter<void>()
+  @Output() optionCardPick: EventEmitter<number> = new EventEmitter<number>()
 
   @Input({required: true}) option: IQuestionOption
-  @Input() optionPicked: boolean = false
+  @Input() optionCardPicked: boolean = false
 
   public pickOption(): void {
-    this.optionCardPick.emit()
+    this.optionCardPick.emit(this.option.id)
   }
 }
