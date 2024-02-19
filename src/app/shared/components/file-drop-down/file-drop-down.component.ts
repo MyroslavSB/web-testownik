@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, DestroyRef, inject} from '@angular/core';
-import {QuestionsProcessingService} from "../../../services/questions-processing.service";
+import {QuestionsProcessingService} from "../../../services/question-processing-service/questions-processing.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {QuestionsService} from "../../../services/questions-service/questions.service";
 import {Router} from "@angular/router";

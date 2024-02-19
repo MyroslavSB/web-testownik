@@ -37,7 +37,7 @@
 
         <div class="stat__number row flex justify-between align-center subtitle-1">
           <p>0</p>
-          <p >0</p>
+          <p>0</p>
         </div>
       </div>
 
@@ -52,20 +52,26 @@
         </div>
 
         <div class="stat__number row flex justify-between align-center subtitle-1">
-          <p>{{passedQuestions$ | async}}</p>
-          <p >{{totalQuestions$ | async}}</p>
+          <p>{{ passedQuestions$ | async }}</p>
+          <p>{{ totalQuestions$ | async }}</p>
         </div>
       </div>
 
-      <div class="stat">
+      <div class="stat flex align-center">
         <p class="subtitle-1">Liczba pytań</p>
 
-        <p class="stat__quantity span-success">{{totalQuestions$ | async}}</p>
+        <p class="stat__quantity span-success">{{ totalQuestions$ | async }}</p>
       </div>
 
-      <button class="quiz-page__main-submit subtitle-1" (click)="submitAnswer()">
+      <button
+        class="quiz-page__main-submit subtitle-1"
+        (click)="submitAnswer()"
+      >
         SUBMIT
       </button>
     </div>
+    <p>{{(timeElapsed$ | async)}}</p>
+
+    <p>{{(timeElapsed$ | async) | timer }}</p>
   </div>
 </div>

@@ -6,13 +6,15 @@ import {
   TrackByFunction
 } from '@angular/core';
 import {QuestionsService} from "../../services/questions-service/questions.service";
-import {Observable} from "rxjs";
+import {Observable, timer} from "rxjs";
 import {IQuestion} from "../../shared/interfaces/i-question";
 import {AsyncPipe, CommonModule, NgForOf} from "@angular/common";
 import {OptionCardComponent} from "../../shared/components/option-card/option-card.component";
 import {IQuestionOption} from "../../shared/interfaces/i-question-option";
 import {OptionPickedPipe} from "../../shared/pipes/option-picked.pipe";
 import {TwoNumsRatioPipe} from "../../shared/pipes/two-ints-ration.pipe";
+import {TimerService} from "../../services/timer.service";
+import {TimerPipe} from "../../shared/pipes/timer.pipe";
 
 @Component({
   selector: 'app-quiz-page',
@@ -23,11 +25,13 @@ import {TwoNumsRatioPipe} from "../../shared/pipes/two-ints-ration.pipe";
     NgForOf,
     CommonModule,
     OptionPickedPipe,
-    TwoNumsRatioPipe
+    TwoNumsRatioPipe,
+    TimerPipe
   ],
   templateUrl: './quiz-page.component.html',
   styleUrl: './quiz-page.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [TimerService]
 })
 export class QuizPageComponent implements OnInit {
 
@@ -43,14 +47,23 @@ export class QuizPageComponent implements OnInit {
 
   public showStatuses: boolean = false
 
+  public timeElapsed$: Observable<number> = this.timerService.timeElapsed
+
   constructor(
     private questionsService: QuestionsService,
-    private cdRef: ChangeDetectorRef
+    private cdRef: ChangeDetectorRef,
+    private timerService: TimerService
   ) {
   }
 
   ngOnInit() {
     this.changeActiveQuestion()
+
+    this.startTimer()
+  }
+
+  private startTimer(): void {
+    this.timerService.startTimer(Date.now())
 
   }
 

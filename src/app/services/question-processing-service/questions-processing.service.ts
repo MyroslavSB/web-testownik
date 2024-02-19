@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {from, mergeMap, Observable, toArray} from "rxjs";
-import {IQuestion} from "../shared/interfaces/i-question";
-import {ParsingStrategyFactory} from "../shared/strategies/parsing-strategy-factory";
+import {IQuestion} from "../../shared/interfaces/i-question";
+import {ParsingStrategyFactory} from "../../shared/strategies/parsing-strategy-factory";
 
 @Injectable({
   providedIn: 'root'
