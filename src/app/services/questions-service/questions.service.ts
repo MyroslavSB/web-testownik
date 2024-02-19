@@ -21,6 +21,7 @@ export class QuestionsService {
 
   public setQuestions(questions: IQuestion[]): void {
     this.questions.next(questions)
+    this.totalQuestionsCount.next(questions.length)
   }
 
   public get questionsObservable(): Observable<IQuestion[]> {
@@ -38,8 +39,10 @@ export class QuestionsService {
     this.activeQuestion.next(this.questions.getValue()[random_index])
   }
 
-  public questionAnswered(): void {
-
+  public questionAnswered(picked_options: number[]): void {
+    let questionPassed = false
+    const active = this.activeQuestion.getValue()
+    active.correct_option_index
   }
 
   public filterQuestions(): void {

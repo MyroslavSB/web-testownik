@@ -3,9 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   OnInit,
-  Signal,
-  signal,
-  TrackByFunction, WritableSignal
+  TrackByFunction
 } from '@angular/core';
 import {QuestionsService} from "../../services/questions-service/questions.service";
 import {Observable} from "rxjs";
@@ -43,6 +41,8 @@ export class QuizPageComponent implements OnInit {
   public totalQuestions$: Observable<number> = this.questionsService.totalQuestions
   public passedQuestions$: Observable<number> = this.questionsService.passedQuestions
 
+  public showStatuses: boolean = false
+
   constructor(
     private questionsService: QuestionsService,
     private cdRef: ChangeDetectorRef
@@ -76,7 +76,16 @@ export class QuizPageComponent implements OnInit {
   }
 
   public submitAnswer(): void {
+    if (this.showStatuses) {
+      this.questionsService.questionAnswered(this.pickedOptions)
+      this.showStatuses = false
+      this.cdRef.detectChanges()
+      return
 
+    }
+
+    this.showStatuses = true
+    this.cdRef.detectChanges()
   }
 
 

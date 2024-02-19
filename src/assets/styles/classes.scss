@@ -1,3 +1,5 @@
+@import "./vars";
+
 .flex {
   display: flex;
 }
@@ -8,4 +10,13 @@
 
 .justify-between {
   justify-content: space-between;
+}
+
+
+.span-success {
+  color: $warning-success;
+}
+
+.span-failure {
+  color: $warning;
 }

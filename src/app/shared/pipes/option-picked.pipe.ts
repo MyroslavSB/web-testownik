@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform, WritableSignal} from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'optionPicked',

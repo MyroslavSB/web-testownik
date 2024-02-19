@@ -56,6 +56,16 @@
           <p >{{totalQuestions$ | async}}</p>
         </div>
       </div>
+
+      <div class="stat">
+        <p class="subtitle-1">Liczba pytań</p>
+
+        <p class="stat__quantity span-success">{{totalQuestions$ | async}}</p>
+      </div>
+
+      <button class="quiz-page__main-submit subtitle-1" (click)="submitAnswer()">
+        SUBMIT
+      </button>
     </div>
   </div>
 </div>

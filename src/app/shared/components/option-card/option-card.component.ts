@@ -15,6 +15,10 @@ export class OptionCardComponent {
 
   @Input({required: true}) option: IQuestionOption
   @Input() optionCardPicked: boolean = false
+  @Input() correctOptions: number[] = []
+  @Input() showStatus: boolean = false
+
+
 
   public pickOption(): void {
     this.optionCardPick.emit(this.option.id)
