@@ -2,6 +2,10 @@
 
 .quiz-page {
   &__main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 50px;
+
     &-content {
       &-title {
         color: $text-fourth;
@@ -13,6 +17,43 @@
         grid-template-columns: repeat(3, 1fr);
         grid-column-gap: 3%;
         grid-row-gap: 32px;
+      }
+    }
+
+    &-stats {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+
+      .stat {
+        margin-bottom: 32px;
+        max-width: 136px;
+
+        .row {
+          margin-bottom: 12px;
+        }
+
+        &__progress {
+          width: 100%;
+          height: 6px;
+          border-radius: 4px;
+          background: $warning-success;
+
+          &.answers {
+            background: $text-secondary;
+          }
+
+
+          &-success {
+            background: $warning-success;
+          }
+
+          &-failure {
+            background: $warning;
+          }
+        }
+
       }
     }
   }

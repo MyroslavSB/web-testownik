@@ -7,9 +7,14 @@ import {IQuestion} from "../../shared/interfaces/i-question";
 })
 export class QuestionsService {
 
+  private questions: BehaviorSubject<IQuestion[]> = new BehaviorSubject<IQuestion[]>([])
   private activeQuestion: BehaviorSubject<IQuestion> = new BehaviorSubject<IQuestion>(null)
 
-  private questions: BehaviorSubject<IQuestion[]> = new BehaviorSubject<IQuestion[]>([])
+  private totalQuestionsCount: BehaviorSubject<number> = new BehaviorSubject<number>(0)
+  private passedQuestionsCount: BehaviorSubject<number> = new BehaviorSubject<number>(0)
+
+  private correctAnswers: BehaviorSubject<number> = new BehaviorSubject<number>(0)
+  private wrongAnswers: BehaviorSubject<number> = new BehaviorSubject<number>(0)
 
   constructor() {
   }
@@ -18,7 +23,7 @@ export class QuestionsService {
     this.questions.next(questions)
   }
 
-  public getQuestionsObservable(): Observable<IQuestion[]> {
+  public get questionsObservable(): Observable<IQuestion[]> {
     return this.questions.asObservable()
   }
 
@@ -43,11 +48,21 @@ export class QuestionsService {
     this.setQuestions(questions)
   }
 
-  public get correctAnswersCount(): number {
-    return this.questions.getValue().filter(question => question.remaining_attempts === 0).length
+  public get correctAnswersCount(): Observable<number> {
+    return this.correctAnswers.asObservable()
   }
 
+  public get wrongAnswersCount(): Observable<number>  {
+    return this.wrongAnswers.asObservable()
+  }
 
+  public get totalQuestions(): Observable<number> {
+    return this.totalQuestionsCount.asObservable()
+  }
+
+  public get passedQuestions(): Observable<number> {
+    return this.passedQuestionsCount.asObservable()
+  }
   public canActivate(): boolean {
     return this.questions.getValue().length > 0
   }

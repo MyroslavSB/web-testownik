@@ -20,5 +20,42 @@
       </div>
     </div>
 
+    <div class="quiz-page__main-stats">
+      <div class="stat">
+        <p class="stat__title row subtitle-1">Udzielone odpowiedzi</p>
+
+        <div class="stat__progress row">
+          <div class="stat__progress-success"
+               [style.width]="((correctAnswers$ | async) | twoNumsRatio: (wrongAnswers$ | async))[0]"
+          ></div>
+
+          <div class="stat__progress-failure"
+               [style.width]="((correctAnswers$ | async) | twoNumsRatio: (wrongAnswers$ | async))[1]"
+
+          ></div>
+        </div>
+
+        <div class="stat__number row flex justify-between align-center subtitle-1">
+          <p>0</p>
+          <p >0</p>
+        </div>
+      </div>
+
+      <div class="stat">
+        <p class="stat__title row subtitle-1">Poprawne odpowiedzi</p>
+
+        <div class="stat__progress answers row">
+          <div class="stat__progress-success"
+               [style.width]="((passedQuestions$ | async) | twoNumsRatio: (totalQuestions$ | async))[0]"
+          ></div>
+
+        </div>
+
+        <div class="stat__number row flex justify-between align-center subtitle-1">
+          <p>{{passedQuestions$ | async}}</p>
+          <p >{{totalQuestions$ | async}}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

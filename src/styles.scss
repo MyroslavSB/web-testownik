@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "./assets/styles/mixins";
 @import "./assets/styles/fonts";
+@import "./assets/styles/classes";
 
 * {
   box-sizing: border-box;
@@ -64,6 +65,12 @@ input, label {
   }
 }
 
+
+
 .headline-1 {
   @include font-base(32px, 400, 38.4px, normal, $roboto);
+}
+
+.subtitle-1 {
+  @include font-base(14px, 400, 19px, normal, $roboto);
 }
