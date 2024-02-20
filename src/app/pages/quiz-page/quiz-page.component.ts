@@ -6,7 +6,7 @@ import {
   TrackByFunction
 } from '@angular/core';
 import {QuestionsService} from "../../services/questions-service/questions.service";
-import {Observable, timer} from "rxjs";
+import {Observable} from "rxjs";
 import {IQuestion} from "../../shared/interfaces/i-question";
 import {AsyncPipe, CommonModule, NgForOf} from "@angular/common";
 import {OptionCardComponent} from "../../shared/components/option-card/option-card.component";
