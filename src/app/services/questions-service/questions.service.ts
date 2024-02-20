@@ -32,7 +32,7 @@ export class QuestionsService {
     return this.activeQuestion.asObservable()
   }
 
-  public changeActiveQuestion(): void {
+  public setRandomActiveQuestion(): void {
     const length = this.questions.getValue().length
     const random_index = Math.floor(Math.random() * length)
 
@@ -40,9 +40,34 @@ export class QuestionsService {
   }
 
   public questionAnswered(picked_options: number[]): void {
-    let questionPassed = false
-    const active = this.activeQuestion.getValue()
-    active.correct_option_ids
+    const active_question: IQuestion = this.activeQuestion.getValue()
+
+    const optionCorrect = (id: number) => picked_options.includes(id)
+    const passed: boolean = active_question.correct_option_ids.every(optionCorrect)
+
+    // if user passed last required question attempt then remove it from the list
+    if (passed && active_question.remaining_attempts === 1) {
+      const new_questions = this.questions.getValue().filter(question => question.fe_id !== active_question.fe_id)
+
+      this.questions.next(new_questions)
+      this.setRandomActiveQuestion()
+
+
+      return
+    }
+    const attempts_update = passed ? -1 : 1
+
+    active_question.remaining_attempts = active_question.remaining_attempts + attempts_update
+    const new_questions = this.questions.getValue().map(question => ({
+      ...question,
+      remaining_attempts:
+        question.fe_id === active_question.fe_id ?
+          active_question.remaining_attempts :
+          question.remaining_attempts
+    }))
+
+    this.questions.next(new_questions)
+    this.setRandomActiveQuestion()
   }
 
   public filterQuestions(): void {
@@ -55,7 +80,7 @@ export class QuestionsService {
     return this.correctAnswers.asObservable()
   }
 
-  public get wrongAnswersCount(): Observable<number>  {
+  public get wrongAnswersCount(): Observable<number> {
     return this.wrongAnswers.asObservable()
   }
 
@@ -66,6 +91,7 @@ export class QuestionsService {
   public get passedQuestions(): Observable<number> {
     return this.passedQuestionsCount.asObservable()
   }
+
   public canActivate(): boolean {
     return this.questions.getValue().length > 0
   }

@@ -10,10 +10,10 @@ export class QuestionsProcessingService {
 
   public processFiles(rawQuestions: File[]): Observable<IQuestion[]> {
     return from(rawQuestions).pipe(
-      mergeMap(file => {
+      mergeMap((file: File, index: number) => {
         const strategy = ParsingStrategyFactory.getStrategy(file)
 
-        return strategy.parse(file)
+        return strategy.parse(file, index + 1)
       }),
       toArray()
     )

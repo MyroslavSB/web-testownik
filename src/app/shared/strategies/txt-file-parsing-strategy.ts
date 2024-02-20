@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {IQuestionOption} from "../interfaces/i-question-option";
 
 export class TxtFileParsingStrategy implements IFileParsingStrategy {
-  parse(file: File): Observable<IQuestion> {
+  parse(file: File, fe_id = 0): Observable<IQuestion> {
     return new Observable(observer => {
       const reader = new FileReader();
 
@@ -34,6 +34,7 @@ export class TxtFileParsingStrategy implements IFileParsingStrategy {
 
         const questionObj: IQuestion = {
           question,
+          fe_id,
           remaining_attempts: 2,
           options,
           correct_option_ids,

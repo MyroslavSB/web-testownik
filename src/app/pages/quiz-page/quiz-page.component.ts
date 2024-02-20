@@ -68,7 +68,7 @@ export class QuizPageComponent implements OnInit {
   }
 
   private changeActiveQuestion(): void {
-    this.questionsService.changeActiveQuestion()
+    this.questionsService.setRandomActiveQuestion()
   }
 
   public trackOptions: TrackByFunction<IQuestionOption> = (index, option) => {
@@ -100,7 +100,5 @@ export class QuizPageComponent implements OnInit {
     this.showStatuses = true
     this.cdRef.detectChanges()
   }
-
-
 }
 
