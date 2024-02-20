@@ -23,7 +23,7 @@ export class TimerService implements OnDestroy {
       .pipe(
         takeUntil(this.destroySubj$)
       ).subscribe(time => {
-      console.log(Date.now()-this.startTime)
+
       this.timeElapsed$.next(Date.now() - this.startTime)
     })
   }
