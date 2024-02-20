@@ -12,7 +12,13 @@ export class TxtFileParsingStrategy implements IFileParsingStrategy {
         const content: string = reader.result as string;
         const lines: string[] = content.split(/\r?\n/);
 
-        const correct_option_index: number = lines[0].trim().indexOf('1') - 1;
+        const correct_option_ids: number[] = [];
+
+        let index = -1;
+        while ((index = lines[0].indexOf('1', index + 1)) !== -1) {
+          correct_option_ids.push(index - 1);
+        }
+
         const question: string = lines[1].trim();
 
         let fe_id: number = 0;
@@ -30,7 +36,7 @@ export class TxtFileParsingStrategy implements IFileParsingStrategy {
           question,
           remaining_attempts: 2,
           options,
-          correct_option_index,
+          correct_option_ids,
           file_name
         }
 

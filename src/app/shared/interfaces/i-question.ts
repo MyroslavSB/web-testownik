@@ -4,6 +4,6 @@ export interface IQuestion {
   question: string;
   remaining_attempts: number;
   options: IQuestionOption[];
-  correct_option_index: number;
+  correct_option_ids: number[];
   file_name: string;
 }

@@ -5,6 +5,7 @@
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-column-gap: 50px;
+    padding-top: 64px;
 
     &-content {
       &-title {
@@ -28,7 +29,8 @@
 
       .stat {
         margin-bottom: 32px;
-        max-width: 136px;
+        width: max-content;
+        text-align: center;
 
         .row {
           margin-bottom: 12px;

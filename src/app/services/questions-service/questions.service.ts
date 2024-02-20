@@ -42,7 +42,7 @@ export class QuestionsService {
   public questionAnswered(picked_options: number[]): void {
     let questionPassed = false
     const active = this.activeQuestion.getValue()
-    active.correct_option_index
+    active.correct_option_ids
   }
 
   public filterQuestions(): void {

@@ -71,6 +71,12 @@ input, label {
   @include font-base(32px, 400, 38.4px, normal, $roboto);
 }
 
+.headline-2 {
+  @include font-base(24px, 400, 36px, normal, $roboto);
+}
+
 .subtitle-1 {
   @include font-base(14px, 400, 19px, normal, $roboto);
 }
+
+
