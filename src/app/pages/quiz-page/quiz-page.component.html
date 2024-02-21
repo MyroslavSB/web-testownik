@@ -25,48 +25,48 @@
         <p class="stat__title row subtitle-1">Udzielone odpowiedzi</p>
 
         <div class="stat__progress row">
-          <div class="stat__progress-success"
-               [style.width]="((correctAnswers$ | async) | twoNumsRatio: (wrongAnswers$ | async))[0]"
+          <div class="stat__progress-bar success"
+               [style.width]="((correctAnswers$ | async) | twoNumsRatio: (wrongAnswers$ | async) : true)[0]"
           ></div>
 
-          <div class="stat__progress-failure"
-               [style.width]="((correctAnswers$ | async) | twoNumsRatio: (wrongAnswers$ | async))[1]"
+          <div class="stat__progress-bar failure"
+               [style.width]="((correctAnswers$ | async) | twoNumsRatio: (wrongAnswers$ | async) : true)[1]"
 
           ></div>
         </div>
 
         <div class="stat__number row flex justify-between align-center subtitle-1">
-          <p>0</p>
-          <p>0</p>
+          <p>{{ correctAnswers$ | async }}</p>
+          <p>{{ wrongAnswers$ | async }}</p>
         </div>
       </div>
 
       <div class="stat">
-        <p class="stat__title row subtitle-1">Poprawne odpowiedzi</p>
+        <p class="stat__title row subtitle-1">Opanowane pytania</p>
 
         <div class="stat__progress answers row">
           <div class="stat__progress-success"
-               [style.width]="((passedQuestions$ | async) | twoNumsRatio: (totalQuestions$ | async))[0]"
+               [style.width]="((passedQuestions$ | async) | twoNumsRatio: (questionsInfo$ | async).init_count)[0]"
           ></div>
 
         </div>
 
         <div class="stat__number row flex justify-between align-center subtitle-1">
           <p>{{ passedQuestions$ | async }}</p>
-          <p>{{ totalQuestions$ | async }}</p>
+          <p>{{ (questionsInfo$ | async).init_count }}</p>
         </div>
       </div>
 
       <div class="stat flex flex-column align-center">
         <p class="subtitle-1">Liczba pytań</p>
 
-        <p class="stat__quantity span-success headline-2">{{ totalQuestions$ | async }}</p>
+        <p class="stat__quantity span-success headline-2">{{ (questionsInfo$ | async).init_count }}</p>
       </div>
 
       <div class="stat">
         <p class="subtitle-1">Czas nauki</p>
 
-        <p class="span-success headline-2">{{(timeElapsed$ | async) | timer }}</p>
+        <p class="span-success headline-2">{{ (timeElapsed$ | async) | timer }}</p>
       </div>
       <button
         class="quiz-page__main-submit subtitle-1"

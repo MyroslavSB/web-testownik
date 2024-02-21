@@ -15,6 +15,7 @@ import {OptionPickedPipe} from "../../shared/pipes/option-picked.pipe";
 import {TwoNumsRatioPipe} from "../../shared/pipes/two-ints-ration.pipe";
 import {TimerService} from "../../services/timer.service";
 import {TimerPipe} from "../../shared/pipes/timer.pipe";
+import {IQuestionsInfo} from "../../shared/interfaces/services/i-questions-info";
 
 @Component({
   selector: 'app-quiz-page',
@@ -42,7 +43,7 @@ export class QuizPageComponent implements OnInit {
   public correctAnswers$: Observable<number> = this.questionsService.correctAnswersCount
   public wrongAnswers$: Observable<number> = this.questionsService.wrongAnswersCount
 
-  public totalQuestions$: Observable<number> = this.questionsService.totalQuestions
+  public questionsInfo$: Observable<IQuestionsInfo> = this.questionsService.questionsObservable
   public passedQuestions$: Observable<number> = this.questionsService.passedQuestions
 
   public showStatuses: boolean = false
@@ -89,15 +90,17 @@ export class QuizPageComponent implements OnInit {
   }
 
   public submitAnswer(): void {
-    if (this.showStatuses) {
+    if (!this.showStatuses) {
       this.questionsService.questionAnswered(this.pickedOptions)
-      this.showStatuses = false
+      this.showStatuses = true
       this.cdRef.detectChanges()
       return
 
     }
 
-    this.showStatuses = true
+    this.showStatuses = false
+    this.pickedOptions = []
+    this.questionsService.setRandomActiveQuestion()
     this.cdRef.detectChanges()
   }
 }
