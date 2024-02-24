@@ -17,7 +17,7 @@ export class OptionStatusPipe implements PipeTransform {
     const pickedStatuses = [this.optionStatuses.PICKED_ANSWER]
 
     if (!show_statuses) {
-      return picked_options.includes()
+      return picked_options.includes(option_id) ? pickedStatuses : []
     }
 
     const isOptionPicked = picked_options.includes(option_id);
