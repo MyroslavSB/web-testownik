@@ -16,6 +16,7 @@ import {TwoNumsRatioPipe} from "../../shared/pipes/two-ints-ration.pipe";
 import {TimerService} from "../../services/timer.service";
 import {TimerPipe} from "../../shared/pipes/timer.pipe";
 import {IQuestionsInfo} from "../../shared/interfaces/services/i-questions-info";
+import {OptionStatusPipe} from "../../shared/pipes/option-status.pipe";
 
 @Component({
   selector: 'app-quiz-page',
@@ -27,7 +28,8 @@ import {IQuestionsInfo} from "../../shared/interfaces/services/i-questions-info"
     CommonModule,
     OptionPickedPipe,
     TwoNumsRatioPipe,
-    TimerPipe
+    TimerPipe,
+    OptionStatusPipe
   ],
   templateUrl: './quiz-page.component.html',
   styleUrl: './quiz-page.component.scss',
@@ -77,6 +79,10 @@ export class QuizPageComponent implements OnInit {
   }
 
   public pickOption(option_id: number): void {
+    if (this.showStatuses) {
+      return
+    }
+
     if (this.pickedOptions.includes(option_id)) {
       this.pickedOptions = this.pickedOptions.filter(id => id !== option_id)
 

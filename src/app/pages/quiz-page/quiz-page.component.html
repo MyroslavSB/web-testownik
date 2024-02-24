@@ -12,10 +12,10 @@
           *ngFor="let option of (activeQuestion$ | async).options; trackBy trackOptions"
           [option]="option"
           [optionCardPicked]="option.id | optionPicked: pickedOptions"
+          [optionStatuses]="option.id | optionStatus: pickedOptions : (activeQuestion$ | async).correct_option_ids : showStatuses"
           (optionCardPick)="pickOption($event)"
 
         ></app-option-card>
-
 
       </div>
     </div>

@@ -1,6 +1,6 @@
 <div class="option"
      (click)="pickOption()"
-     [class.picked]="optionCardPicked"
+     [ngClass]="[optionStatuses, 'picked': optionCardPicked]"
 >
   <p class="option__text">{{ option.text }}</p>
 </div>

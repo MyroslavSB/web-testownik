@@ -1,11 +1,14 @@
-import {ChangeDetectionStrategy, Component, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {IQuestionOption} from "../../interfaces/i-question-option";
-import { EventEmitter } from '@angular/core';
+import {EOptionStatuses} from "../../enums/e-option-statuses";
+import {NgClass} from "@angular/common";
 
 @Component({
   selector: 'app-option-card',
   standalone: true,
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './option-card.component.html',
   styleUrl: './option-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -16,7 +19,7 @@ export class OptionCardComponent {
   @Input({required: true}) option: IQuestionOption
   @Input() optionCardPicked: boolean = false
   @Input() correctOptions: number[] = []
-  @Input() showStatus: boolean = false
+  @Input() optionStatuses: EOptionStatuses[] = []
 
 
 
