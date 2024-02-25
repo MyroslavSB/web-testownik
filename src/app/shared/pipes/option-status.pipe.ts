@@ -24,10 +24,10 @@ export class OptionStatusPipe implements PipeTransform {
     const isOptionCorrect = correct_options.includes(option_id);
 
     if (isOptionPicked) {
-      return isOptionCorrect ? this.optionStatuses.CORRECT_ANSWER : this.optionStatuses.WRONG_ANSWER;
+      return [...pickedStatuses, isOptionCorrect ? this.optionStatuses.CORRECT_ANSWER : this.optionStatuses.WRONG_ANSWER]
     }
 
-    return isOptionCorrect ? this.optionStatuses.MISSED_ANSWER : null;
+    return isOptionCorrect ? [this.optionStatuses.MISSED_ANSWER] : [];
 
   }
 }

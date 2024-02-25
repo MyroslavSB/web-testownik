@@ -12,5 +12,18 @@
     border-color: $accent-primary-dark;
   }
 
+  &.wrong-answer {
+    border-color: $warning;
+
+  }
+
+  &.missed-answer {
+    border-color: $warning-orange;
+
+  }
+
+  &.correct-answer {
+    border-color: $warning-success;
+  }
 
 }
