@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {IQuestionOption} from "../../interfaces/i-question-option";
 import {EOptionStatuses} from "../../enums/e-option-statuses";
 import {NgClass} from "@angular/common";
