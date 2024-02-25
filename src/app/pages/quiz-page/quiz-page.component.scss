@@ -1,7 +1,10 @@
 @import "../../../assets/styles/vars";
 
 .quiz-page {
+  height: 100%;
+
   &__main {
+    height: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-column-gap: 50px;
@@ -13,6 +16,7 @@
       align-items: center;
       justify-content: space-between;
       flex-direction: column;
+      padding-bottom: 64px;
 
       &-title {
         color: $text-fourth;
@@ -30,16 +34,16 @@
         color: $text-main;
 
         &-name {
-          margin-bottom: 48px;
+          width: max-content;
+          margin: 0 auto 48px;
         }
       }
     }
 
     &-stats {
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-direction: column;
+      align-items: center;
 
       .stat {
         margin-bottom: 32px;
