@@ -2,21 +2,33 @@
   <div class="quiz-page__main">
 
     <div class="quiz-page__main-content">
-      <h4 class="quiz-page__main-content-title headline-1">
-        {{ (activeQuestion$ | async).question }}
-      </h4>
+      <div>
+        <h4 class="quiz-page__main-content-title headline-1">
+          {{ (activeQuestion$ | async).question }}
+        </h4>
 
-      <div class="quiz-page__main-content-questions">
+        <div class="quiz-page__main-content-questions">
 
-        <app-option-card
-          *ngFor="let option of (activeQuestion$ | async).options; trackBy trackOptions"
-          [option]="option"
-          [optionCardPicked]="option.id | optionPicked: pickedOptions"
-          [optionStatuses]="option.id | optionStatus: pickedOptions : (activeQuestion$ | async).correct_option_ids : showStatuses"
-          (optionCardPick)="pickOption($event)"
+          <app-option-card
+            *ngFor="let option of (activeQuestion$ | async).options; trackBy trackOptions"
+            [option]="option"
+            [optionCardPicked]="option.id | optionPicked: pickedOptions"
+            [optionStatuses]="option.id | optionStatus: pickedOptions : (activeQuestion$ | async).correct_option_ids : showStatuses"
+            (optionCardPick)="pickOption($event)"
 
-        ></app-option-card>
+          ></app-option-card>
 
+        </div>
+      </div>
+
+      <div class="quiz-page__main-content-info">
+        <p class="quiz-page__main-content-info-name subtitle-1">
+          {{ (activeQuestion$ | async).file_name }}
+        </p>
+
+        <p class="quiz-page__main-content-info-attempts subtitle-1">
+          Remaining attempts: {{ (activeQuestion$ | async).remaining_attempts }}
+        </p>
       </div>
     </div>
 

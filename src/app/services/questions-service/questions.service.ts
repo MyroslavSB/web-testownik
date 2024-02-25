@@ -43,7 +43,8 @@ export class QuestionsService {
     const active_question: IQuestion = this.activeQuestion.getValue()
 
     const optionCorrect = (id: number) => picked_options.includes(id)
-    const passed: boolean = active_question.correct_option_ids.every(optionCorrect)
+    const passed: boolean = active_question.correct_option_ids.every(optionCorrect) &&
+      active_question.correct_option_ids.length === picked_options.length
 
     this.countAnswersStats(passed)
 
